@@ -32,22 +32,32 @@ export default function GlobalControls() {
     <>
       {/* Bottom bar controls */}
       <aside
-        className={`fixed left-0 right-0 mx-auto bottom-0 z-30 max-w-full sm:max-w-4xl bg-white shadow-2xl border border-gray-200 rounded-t-2xl sm:rounded-t-3xl px-2 sm:px-6 pt-4 sm:pt-7 pb-2 sm:pb-4 flex flex-col items-stretch gap-2 sm:gap-4 transition-transform duration-500 will-change-transform overflow-visible w-full`}
+        className={`fixed left-0 right-0 mx-auto bottom-0 z-[60] max-w-full sm:max-w-4xl bg-white shadow-2xl border-t border-gray-200 rounded-none sm:rounded-t-3xl px-3 py-3 sm:px-6 sm:pt-7 sm:pb-4 flex flex-col items-stretch gap-3 sm:gap-4 transition-transform duration-500 will-change-transform w-full overflow-x-hidden`}
         style={{
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
           minHeight: open ? 'auto' : '36px',
           transform: open ? 'translateY(0)' : 'translateY(75%)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 1.5rem) + 0.5rem)',
         }}
       >
-        {/* Arrow button centered on top border */}
-        <div className="absolute left-0 right-0 flex justify-center" style={{top: '-22px'}}>
+        {/* Arrow button centered on top border, overlapping */}
+        <div className="absolute left-0 right-0 flex justify-center z-[110] pointer-events-auto" style={{top: '-22px'}}>
           <button
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Hide controls bar' : 'Show controls bar'}
-            className="bg-white border border-gray-300 rounded-full shadow-md p-2 flex items-center justify-center transition-transform duration-300"
-            style={{transform: open ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.3s'}}
+            title={open ? 'Hide controls bar' : 'Show controls bar'}
+            className={
+              `bg-white border border-gray-300 rounded-full shadow-md p-2 flex items-center justify-center
+              transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400`
+            }
+            style={{
+              transform: open ? 'rotate(0deg)' : 'rotate(180deg)',
+              transition: 'transform 0.3s',
+              boxShadow: open ? '0 2px 8px rgba(0,0,0,0.10)' : '0 2px 12px rgba(0,0,0,0.18)',
+            }}
           >
+            <span className="sr-only">{open ? 'Hide controls bar' : 'Show controls bar'}</span>
             <FaChevronDown className="text-gray-600 text-lg" />
           </button>
         </div>
