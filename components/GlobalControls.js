@@ -32,7 +32,7 @@ export default function GlobalControls() {
     <>
       {/* Bottom bar controls */}
       <aside
-        className={`fixed left-0 right-0 mx-auto bottom-0 z-30 max-w-4xl bg-white shadow-2xl border border-gray-200 rounded-t-3xl px-6 pt-7 pb-4 flex flex-col items-stretch gap-4 transition-transform duration-500 will-change-transform overflow-visible`}
+        className={`fixed left-0 right-0 mx-auto bottom-0 z-30 max-w-full sm:max-w-4xl bg-white shadow-2xl border border-gray-200 rounded-t-2xl sm:rounded-t-3xl px-2 sm:px-6 pt-4 sm:pt-7 pb-2 sm:pb-4 flex flex-col items-stretch gap-2 sm:gap-4 transition-transform duration-500 will-change-transform overflow-visible w-full`}
         style={{
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
@@ -52,9 +52,9 @@ export default function GlobalControls() {
           </button>
         </div>
         {/* Controls: first row = system buttons, second row = rest */}
-        <div className="flex flex-col gap-3 w-full mt-1">
+        <div className="flex flex-col gap-2 sm:gap-3 w-full mt-1">
           {/* Numeric system buttons */}
-          <div className="flex flex-row gap-2 items-end flex-wrap justify-start">
+          <div className="flex flex-row gap-1 sm:gap-2 items-end flex-wrap justify-start">
             {(() => {
               const sen = systems.find(s => s.name === 'SEN');
               const rest = systems.filter(s => s.name !== 'SEN');
@@ -100,8 +100,8 @@ export default function GlobalControls() {
             })()}
           </div>
           {/* Second row: controls and buttons */}
-          <div className="flex flex-row flex-nowrap gap-2 items-end mt-2 min-w-0">
-            <div className="flex-shrink-0 min-w-[90px]">
+          <div className="flex flex-row flex-wrap gap-1 sm:gap-2 items-end mt-2 min-w-0 w-full">
+            <div className="flex-shrink-0 min-w-[70px] sm:min-w-[90px] w-1/3 sm:w-auto">
               <label className="text-[0.85rem] text-black-300">Rounding</label>
               <select
                 value={rounding}
@@ -113,7 +113,7 @@ export default function GlobalControls() {
                 <option value="stochastic" className="bg-white text-gray-900">stochastic</option>
               </select>
             </div>
-            <div className="flex-shrink-0 min-w-[90px]">
+            <div className="flex-shrink-0 min-w-[70px] sm:min-w-[90px] w-1/3 sm:w-auto">
               <label className="text-[0.85rem] text-black-300">Accum.</label>
               <select
                 value={accumulation}
@@ -125,13 +125,13 @@ export default function GlobalControls() {
                 <option value="widened" className="bg-white text-gray-900">widened</option>
               </select>
             </div>
-            <div className="flex-shrink-0 min-w-[110px]">
+            <div className="flex-shrink-0 min-w-[80px] sm:min-w-[110px] w-1/3 sm:w-auto">
               <label className="text-[0.85rem] text-black-300">Seed</label>
               <input type="number" value={seed} onChange={e => setSeed(e.target.value)} className="mt-1 w-full p-1 rounded text-xs bg-white text-gray-900 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="e.g. 42" />
             </div>
-            <div className="flex flex-row gap-1 items-end flex-shrink-0 min-w-[120px]">
-              <button type="button" onClick={apply} className="btn-primary min-w-[140px] max-w-[180px] text-base text-center whitespace-nowrap flex justify-center items-center px-4 py-2 transition-all duration-200">Apply</button>
-              <button type="button" onClick={() => { setSeed(''); setRounding('nearest'); setAccumulation('same'); }} className="btn-ghost min-w-[140px] max-w-[180px] text-base text-center whitespace-nowrap flex justify-center items-center px-4 py-2 transition-all duration-200">Reset</button>
+            <div className="flex flex-row gap-1 sm:gap-2 items-end flex-shrink-0 min-w-[90px] w-full">
+              <button type="button" onClick={apply} className="btn-primary min-w-[90px] sm:min-w-[140px] max-w-[120px] sm:max-w-[180px] text-base text-center whitespace-nowrap flex justify-center items-center px-2 sm:px-4 py-2 transition-all duration-200">Apply</button>
+              <button type="button" onClick={() => { setSeed(''); setRounding('nearest'); setAccumulation('same'); }} className="btn-ghost min-w-[90px] sm:min-w-[140px] max-w-[120px] sm:max-w-[180px] text-base text-center whitespace-nowrap flex justify-center items-center px-2 sm:px-4 py-2 transition-all duration-200">Reset</button>
             </div>
           </div>
         </div>
